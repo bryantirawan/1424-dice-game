@@ -249,36 +249,18 @@ struct PlayerRollView: View {
                             .multilineTextAlignment(.leading)
                             .offset(x: -5)
                             .disabled(!canRoll())
-//                            NavigationLink {
-//                                WinnerView(winner: self.winner, maxScore: self.maxScore)
-//                            } label: {
-//                                Text("Next")
-//                                    .fontWeight(.heavy)
-//                                    .font(.system(size: 40))
-//                                    .foregroundColor(.white)
-//                                    .padding(.horizontal)
-//                            }
                             Button {
                                 if player < playerCount {
                                     if calculateScore(player: player, scoreArray: currentArray) == "it's a washhhhh" {
                                         playSound()
                                     }
-                                    
-//                                    calculateWinner(playerCount: playerCount, scoreDictionary: scoreDictionary)
-//                                    self.score1 = calculateScore(player: 1, scoreArray: scoreDictionary[1]!)
-//                                    self.score2 = calculateScore(player: 2, scoreArray: scoreDictionary[2]!)
-//                                    self.score3 = calculateScore(player: 3, scoreArray: scoreDictionary[3]!)
-//                                    self.score4 = calculateScore(player: 4, scoreArray: scoreDictionary[4]!)
-//                                    self.score5 = calculateScore(player: 5, scoreArray: scoreDictionary[5]!)
-//                                    self.score6 = calculateScore(player: 6, scoreArray: scoreDictionary[6]!)
-                                    
                                     self.player = player + 1
                                     resetDice()
                                     currentArray(player: player)
                                 } else {
                                     if calculateScore(player: player, scoreArray: currentArray) == "it's a washhhhh" {
                                         playSound()
-                                    } else {
+                                    }
                                         calculateWinner(playerCount: playerCount, scoreDictionary: scoreDictionary)
                                         self.score1 = calculateScore(player: 1, scoreArray: scoreDictionary[1]!)
                                         self.score2 = calculateScore(player: 2, scoreArray: scoreDictionary[2]!)
@@ -286,7 +268,7 @@ struct PlayerRollView: View {
                                         self.score4 = calculateScore(player: 4, scoreArray: scoreDictionary[4]!)
                                         self.score5 = calculateScore(player: 5, scoreArray: scoreDictionary[5]!)
                                         self.score6 = calculateScore(player: 6, scoreArray: scoreDictionary[6]!)
-                                    }
+                                    
                                     showingSheet.toggle()
                                 }
                             } label: {

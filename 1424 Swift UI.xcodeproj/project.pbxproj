@@ -11,6 +11,13 @@
 		7B6C7B5E29D1FC4B00B6B57D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C7B5D29D1FC4B00B6B57D /* ContentView.swift */; };
 		7B6C7B6029D1FC5600B6B57D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B6C7B5F29D1FC5600B6B57D /* Assets.xcassets */; };
 		7B6C7B6329D1FC5600B6B57D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B6C7B6229D1FC5600B6B57D /* Preview Assets.xcassets */; };
+		7B6C7B6B29D2195600B6B57D /* PlayerRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C7B6A29D2195600B6B57D /* PlayerRollView.swift */; };
+		7B6C7B6F29D22E8A00B6B57D /* PlayerDiceArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C7B6E29D22E8A00B6B57D /* PlayerDiceArray.swift */; };
+		7B6C7B7329D3C54B00B6B57D /* WinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C7B7229D3C54B00B6B57D /* WinnerView.swift */; };
+		7B6C7B7529D4D9BF00B6B57D /* RollAndDiceLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C7B7429D4D9BF00B6B57D /* RollAndDiceLogic.swift */; };
+		7B84E90229D638FF00F4E7DC /* washhhh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7B84E90129D638FF00F4E7DC /* washhhh.mp3 */; };
+		7B84E90429D73AAA00F4E7DC /* playwashhhh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B84E90329D73AAA00F4E7DC /* playwashhhh.swift */; };
+		7B84E90629D73C7200F4E7DC /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B84E90529D73C7200F4E7DC /* ScoreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +26,13 @@
 		7B6C7B5D29D1FC4B00B6B57D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7B6C7B5F29D1FC5600B6B57D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B6C7B6229D1FC5600B6B57D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7B6C7B6A29D2195600B6B57D /* PlayerRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRollView.swift; sourceTree = "<group>"; };
+		7B6C7B6E29D22E8A00B6B57D /* PlayerDiceArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDiceArray.swift; sourceTree = "<group>"; };
+		7B6C7B7229D3C54B00B6B57D /* WinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerView.swift; sourceTree = "<group>"; };
+		7B6C7B7429D4D9BF00B6B57D /* RollAndDiceLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollAndDiceLogic.swift; sourceTree = "<group>"; };
+		7B84E90129D638FF00F4E7DC /* washhhh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = washhhh.mp3; sourceTree = "<group>"; };
+		7B84E90329D73AAA00F4E7DC /* playwashhhh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playwashhhh.swift; sourceTree = "<group>"; };
+		7B84E90529D73C7200F4E7DC /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				7B6C7B5B29D1FC4B00B6B57D /* _424_Swift_UIApp.swift */,
-				7B6C7B5D29D1FC4B00B6B57D /* ContentView.swift */,
+				7B84E8FC29D636F300F4E7DC /* Sounds */,
+				7B6C7B6D29D22E7500B6B57D /* Models */,
+				7B6C7B6929D2194100B6B57D /* Views */,
 				7B6C7B5F29D1FC5600B6B57D /* Assets.xcassets */,
 				7B6C7B6129D1FC5600B6B57D /* Preview Content */,
 			);
@@ -65,6 +81,35 @@
 				7B6C7B6229D1FC5600B6B57D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7B6C7B6929D2194100B6B57D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7B6C7B5D29D1FC4B00B6B57D /* ContentView.swift */,
+				7B6C7B6A29D2195600B6B57D /* PlayerRollView.swift */,
+				7B6C7B7229D3C54B00B6B57D /* WinnerView.swift */,
+				7B84E90529D73C7200F4E7DC /* ScoreView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7B6C7B6D29D22E7500B6B57D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7B6C7B6E29D22E8A00B6B57D /* PlayerDiceArray.swift */,
+				7B6C7B7429D4D9BF00B6B57D /* RollAndDiceLogic.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7B84E8FC29D636F300F4E7DC /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				7B84E90129D638FF00F4E7DC /* washhhh.mp3 */,
+				7B84E90329D73AAA00F4E7DC /* playwashhhh.swift */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B6C7B6329D1FC5600B6B57D /* Preview Assets.xcassets in Resources */,
+				7B84E90229D638FF00F4E7DC /* washhhh.mp3 in Resources */,
 				7B6C7B6029D1FC5600B6B57D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +183,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B84E90429D73AAA00F4E7DC /* playwashhhh.swift in Sources */,
+				7B84E90629D73C7200F4E7DC /* ScoreView.swift in Sources */,
+				7B6C7B7329D3C54B00B6B57D /* WinnerView.swift in Sources */,
 				7B6C7B5E29D1FC4B00B6B57D /* ContentView.swift in Sources */,
+				7B6C7B6F29D22E8A00B6B57D /* PlayerDiceArray.swift in Sources */,
 				7B6C7B5C29D1FC4B00B6B57D /* _424_Swift_UIApp.swift in Sources */,
+				7B6C7B7529D4D9BF00B6B57D /* RollAndDiceLogic.swift in Sources */,
+				7B6C7B6B29D2195600B6B57D /* PlayerRollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

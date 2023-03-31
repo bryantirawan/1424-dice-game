@@ -11,7 +11,7 @@ import SwiftUI
 struct _424_Swift_UIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PlayerCountView()
         }
     }
 }

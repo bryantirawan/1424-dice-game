@@ -299,6 +299,7 @@ struct PlayerRollView: View {
                 ScoreView(maxScore: self.$maxScore, score1: self.$score1, score2: self.$score2, score3: self.$score3, score4: self.$score4, score5: self.$score5, score6: self.$score6)
             }
         }
+        .accentColor(.red)
     }
 }
 

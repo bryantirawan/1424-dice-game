@@ -10,8 +10,6 @@ import SwiftUI
 
 struct PlayerRollView: View {
     
-    
-    
     var playerCount: Int
     
     @State var showingSheet = false
@@ -123,6 +121,7 @@ struct PlayerRollView: View {
                 return "it's a washhhhh"
             }
     }
+    
 
     func calculateWinner(playerCount: Int, scoreDictionary: [Int: [Int]]) {
         for i in (1...playerCount) {
@@ -142,64 +141,11 @@ struct PlayerRollView: View {
     
     
     func addDiceScoretoCorrectPlayer(player: Int, diceScore: Int) {
-        let aNumber = player
-        
-        switch aNumber {
-        case 1:
-            if scoreDictionary[1]!.count < 6 {
-                scoreDictionary[1]!.append(diceScore)
-                print("\(diceScore) has been added to array")
-                oneDiceHasBeenAdded = true
-            } else {
-                print("you already have six dice")
-            }
-        case 2:
-            if scoreDictionary[2]!.count < 6 {
-                scoreDictionary[2]!.append(diceScore)
-                print("\(diceScore) has been added to array")
-                oneDiceHasBeenAdded = true
-            }
-            else {
-                print("you already have six dice")
-            }
-        case 3:
-            if scoreDictionary[3]!.count < 6 {
-                scoreDictionary[3]!.append(diceScore)
-                print("\(diceScore) has been added to array")
-                oneDiceHasBeenAdded = true
-            }
-            else {
-                print("you already have six dice")
-            }
-        case 4:
-            if scoreDictionary[4]!.count < 6 {
-                scoreDictionary[4]!.append(diceScore)
-                print("\(diceScore) has been added to array")
-                oneDiceHasBeenAdded = true
-            }
-            else {
-                print("you already have six dice")
-            }
-        case 5:
-            if scoreDictionary[5]!.count < 6 {
-                scoreDictionary[5]!.append(diceScore)
-                print("\(diceScore) has been added to array")
-                oneDiceHasBeenAdded = true
-            }
-            else {
-                print("you already have six dice")
-            }
-        case 6:
-            if scoreDictionary[6]!.count < 6 {
-                scoreDictionary[6]!.append(diceScore)
-                print("\(diceScore) has been added to array")
-                oneDiceHasBeenAdded = true
-            }
-            else {
-                print("you already have six dice")
-            }
-        default:
-            print("error adding dice into array")
+        if scoreDictionary[player]!.count < 6 {
+            scoreDictionary[player]!.append(diceScore)
+            oneDiceHasBeenAdded = true
+        } else {
+            print("you already have six dice")
         }
     }
     

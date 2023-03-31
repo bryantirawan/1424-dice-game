@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PlayerRollView: View {
     
-    var playerCount: Int
+    @State var playerCount: Int
     
     @State var showingSheet = false
     
@@ -281,7 +281,7 @@ struct PlayerRollView: View {
                                     .padding(.all)
                             }
                             .sheet(isPresented: $showingSheet) {
-                                ScoreView(maxScore: self.$maxScore, score1: self.$score1, score2: self.$score2, score3: self.$score3, score4: self.$score4, score5: self.$score5, score6: self.$score6)
+                                ScoreView(playerCount: self.$playerCount, maxScore: self.$maxScore, score1: self.$score1, score2: self.$score2, score3: self.$score3, score4: self.$score4, score5: self.$score5, score6: self.$score6)
                             }
                             .offset(x: 28)
                             .disabled(currentArray.count < 6)
@@ -297,7 +297,7 @@ struct PlayerRollView: View {
                 showingSheet.toggle()
             }
             .sheet(isPresented: $showingSheet) {
-                ScoreView(maxScore: self.$maxScore, score1: self.$score1, score2: self.$score2, score3: self.$score3, score4: self.$score4, score5: self.$score5, score6: self.$score6)
+                ScoreView(playerCount: self.$playerCount, maxScore: self.$maxScore, score1: self.$score1, score2: self.$score2, score3: self.$score3, score4: self.$score4, score5: self.$score5, score6: self.$score6)
             }
         }
         .accentColor(.white)
@@ -306,6 +306,8 @@ struct PlayerRollView: View {
 
 struct ScoreView: View {
     @Environment(\.dismiss) var dismiss
+    
+    @Binding var playerCount: Int
     
     @Binding var maxScore: Int
     @Binding var score1: String
@@ -319,38 +321,48 @@ struct ScoreView: View {
         VStack {
             HStack {
                 Text("Current Highest Dice Total: \(maxScore)")
+                    .font(.title)
             }
             HStack {
                 Text("Player1: ")
+                    .fontWeight(.bold)
                 Text(score1)
             }
             HStack {
                 Text("Player2: ")
+                    .fontWeight(.bold)
                 Text(score2)
             }
             HStack {
                 Text("Player3: ")
+                    .fontWeight(.bold)
                 Text(score3)
             }
             HStack {
                 Text("Player4: ")
+                    .fontWeight(.bold)
                 Text(score4)
             }
             HStack {
                 Text("Player5: ")
+                    .fontWeight(.bold)
                 Text(score5)
             }
             HStack {
                 Text("Player6: ")
+                    .fontWeight(.bold)
                 Text(score6)
             }
+            Button("Press to dismiss") {
+                dismiss()
+            }
+            .font(.title)
+            .padding()
+            .foregroundColor(.white)
+            .background(Color(red: 94/255, green: 103/255, blue: 38/255))
         }
-        Button("Press to dismiss") {
-            dismiss()
-        }
-        .font(.title)
-        .padding()
-        .background(.black)
+        
+
     }
 }
 

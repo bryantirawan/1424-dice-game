@@ -51,7 +51,7 @@ struct PlayerRollView: View {
     @State var score5: String = ""
     @State var score6: String = ""
     
-
+    
     
     func currentArray(player: Int) {
         currentArray = scoreDictionary[player]!
@@ -97,16 +97,16 @@ struct PlayerRollView: View {
         if scoreDictionary[player]!.count == 0 {
             return ""
         }
-            if scoreDictionary[player]!.contains(1) && scoreDictionary[player]!.contains(4) {
-                let score = scoreDictionary[player]!.reduce(0, +) - 5
-                return String(score)
-            } else {
-                return "it's a washhhhh"
-            }
+        if scoreDictionary[player]!.contains(1) && scoreDictionary[player]!.contains(4) {
+            let score = scoreDictionary[player]!.reduce(0, +) - 5
+            return String(score)
+        } else {
+            return "it's a washhhhh"
+        }
     }
     
-
-    func calculateWinner(playerCount: Int, scoreDictionary: [Int: [Int]]) {
+    
+    func calculateWinnerAndUpdateScores(playerCount: Int, scoreDictionary: [Int: [Int]]) {
         for i in (1...playerCount) {
             if scoreDictionary[i]!.contains(1) && scoreDictionary[i]!.contains(4) {
                 let score = scoreDictionary[i]!.reduce(0, +) - 5
@@ -120,6 +120,12 @@ struct PlayerRollView: View {
                 continue
             }
         }
+        self.score1 = calculateScore(player: 1, scoreArray: scoreDictionary[1]!)
+        self.score2 = calculateScore(player: 2, scoreArray: scoreDictionary[2]!)
+        self.score3 = calculateScore(player: 3, scoreArray: scoreDictionary[3]!)
+        self.score4 = calculateScore(player: 4, scoreArray: scoreDictionary[4]!)
+        self.score5 = calculateScore(player: 5, scoreArray: scoreDictionary[5]!)
+        self.score6 = calculateScore(player: 6, scoreArray: scoreDictionary[6]!)
     }
     
     
@@ -261,14 +267,7 @@ struct PlayerRollView: View {
                                     if calculateScore(player: player, scoreArray: currentArray) == "it's a washhhhh" {
                                         playSound()
                                     }
-                                        calculateWinner(playerCount: playerCount, scoreDictionary: scoreDictionary)
-                                        self.score1 = calculateScore(player: 1, scoreArray: scoreDictionary[1]!)
-                                        self.score2 = calculateScore(player: 2, scoreArray: scoreDictionary[2]!)
-                                        self.score3 = calculateScore(player: 3, scoreArray: scoreDictionary[3]!)
-                                        self.score4 = calculateScore(player: 4, scoreArray: scoreDictionary[4]!)
-                                        self.score5 = calculateScore(player: 5, scoreArray: scoreDictionary[5]!)
-                                        self.score6 = calculateScore(player: 6, scoreArray: scoreDictionary[6]!)
-                                    
+                                    calculateWinnerAndUpdateScores(playerCount: playerCount, scoreDictionary: scoreDictionary)
                                     showingSheet.toggle()
                                 }
                             } label: {
@@ -292,13 +291,7 @@ struct PlayerRollView: View {
         }
         .toolbar {
             Button("Scores") {
-                calculateWinner(playerCount: playerCount, scoreDictionary: scoreDictionary)
-                self.score1 = calculateScore(player: 1, scoreArray: scoreDictionary[1]!)
-                self.score2 = calculateScore(player: 2, scoreArray: scoreDictionary[2]!)
-                self.score3 = calculateScore(player: 3, scoreArray: scoreDictionary[3]!)
-                self.score4 = calculateScore(player: 4, scoreArray: scoreDictionary[4]!)
-                self.score5 = calculateScore(player: 5, scoreArray: scoreDictionary[5]!)
-                self.score6 = calculateScore(player: 6, scoreArray: scoreDictionary[6]!)
+                calculateWinnerAndUpdateScores(playerCount: playerCount, scoreDictionary: scoreDictionary)
                 showingSheet.toggle()
             }
             .sheet(isPresented: $showingSheet) {
@@ -318,7 +311,7 @@ struct ScoreView: View {
     @Binding var score4: String
     @Binding var score5: String
     @Binding var score6: String
-
+    
     var body: some View {
         VStack {
             HStack {

@@ -153,8 +153,9 @@ struct PlayerRollView: View {
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     VStack {
                         HStack {
-                            Text("Your dice collection: ")
-                            Text(currentArray.map(String.init).joined(separator: ", "))
+                            Text("Your dice collection: \(currentArray.map(String.init).joined(separator: ", "))")
+                                .foregroundColor(.white)
+                                .font(.title3)
                         }
                         HStack {
                             Button {

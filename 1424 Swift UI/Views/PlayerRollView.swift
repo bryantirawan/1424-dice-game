@@ -54,24 +54,7 @@ struct PlayerRollView: View {
 
     
     func currentArray(player: Int) {
-        let arrayPlayer = player
-        
-        switch arrayPlayer {
-        case 1:
-            currentArray = scoreDictionary[1]!
-        case 2:
-            currentArray = scoreDictionary[2]!
-        case 3:
-            currentArray = scoreDictionary[3]!
-        case 4:
-            currentArray = scoreDictionary[4]!
-        case 5:
-            currentArray = scoreDictionary[5]!
-        case 6:
-            currentArray = scoreDictionary[6]!
-        default:
-            print("unable to obtain current array")
-        }
+        currentArray = scoreDictionary[player]!
     }
     
     func canRoll() -> Bool {

@@ -150,7 +150,7 @@ struct PlayerRollView: View {
                     Text("Hello, player\(player)")
                         .foregroundColor(.white)
                         .fontWeight(.heavy)
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .font(.title)
                     VStack {
                         HStack {
                             Text("Your dice collection: \(currentArray.map(String.init).joined(separator: ", "))")
@@ -246,16 +246,18 @@ struct PlayerRollView: View {
                                 if diceSixTapped == false {
                                     self.dice6 = Int.random(in: 1...6)
                                 }
-                            }) {
+                            })
+                            
+                            {
                                 Text("Roll")
                                     .fontWeight(.heavy)
                                     .font(.system(size: 40))
                                     .foregroundColor(.white)
-                                    .padding(.horizontal)
+                                    .padding(.all)
                             }
-                            .multilineTextAlignment(.leading)
                             .offset(x: -5)
                             .disabled(!canRoll())
+                        
                             Button {
                                 if player < playerCount {
                                     if calculateScore(player: player, scoreArray: currentArray) == "it's a washhhhh" {
@@ -276,12 +278,11 @@ struct PlayerRollView: View {
                                     .fontWeight(.heavy)
                                     .font(.system(size: 40))
                                     .foregroundColor(.white)
-                                    .padding(.horizontal)
+                                    .padding(.all)
                             }
                             .sheet(isPresented: $showingSheet) {
                                 ScoreView(maxScore: self.$maxScore, score1: self.$score1, score2: self.$score2, score3: self.$score3, score4: self.$score4, score5: self.$score5, score6: self.$score6)
                             }
-                            .multilineTextAlignment(.trailing)
                             .offset(x: 28)
                             .disabled(currentArray.count < 6)
                         }
@@ -299,7 +300,7 @@ struct PlayerRollView: View {
                 ScoreView(maxScore: self.$maxScore, score1: self.$score1, score2: self.$score2, score3: self.$score3, score4: self.$score4, score5: self.$score5, score6: self.$score6)
             }
         }
-        .accentColor(.red)
+        .accentColor(.white)
     }
 }
 

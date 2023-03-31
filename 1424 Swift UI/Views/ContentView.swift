@@ -23,7 +23,7 @@ struct PlayerCountView: View {
                     Text("Select how many players:")
                         .foregroundColor(.white)
                         .fontWeight(.heavy)
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .font(.title)
                     VStack {
                         HStack {
                             NavigationLink {
@@ -62,6 +62,7 @@ struct PlayerCountView: View {
                 
             }
         }
+        .accentColor(.white)
         
         
     }

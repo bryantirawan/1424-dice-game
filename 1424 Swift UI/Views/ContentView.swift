@@ -62,9 +62,6 @@ struct PlayerCountView: View {
                 
             }
         }
-        .accentColor(.white)
-        
-        
     }
 }
 
@@ -72,12 +69,18 @@ struct PlayerCountDiceView: View {
     
     let number: Int
     
+    
+    
     var body: some View {
         Image("dice\(number)")
             .resizable()
+            .cornerRadius(2)
             .aspectRatio(1, contentMode: .fit)
             .padding()
     }
+    
+    
+    
 }
 
 

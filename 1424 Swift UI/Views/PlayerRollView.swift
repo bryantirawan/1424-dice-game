@@ -138,6 +138,71 @@ struct PlayerRollView: View {
         }
     }
     
+    var diceOneOpacity: Double {
+        if diceOneTapped == false {
+            return 1
+        }
+        else {
+            return 0.2
+        }
+    }
+    var diceTwoOpacity: Double {
+        if diceTwoTapped == false {
+            return 1
+        }
+        else {
+            return 0.2
+        }
+    }
+    var diceThreeOpacity: Double {
+        if diceThreeTapped == false {
+            return 1
+        }
+        else {
+            return 0.2
+        }
+    }
+    var diceFourOpacity: Double {
+        if diceFourTapped == false {
+            return 1
+        }
+        else {
+            return 0.2
+        }
+    }
+    var diceFiveOpacity: Double {
+        if diceFiveTapped == false {
+            return 1
+        }
+        else {
+            return 0.2
+        }
+    }
+    var diceSixOpacity: Double {
+        if diceSixTapped == false {
+            return 1
+        }
+        else {
+            return 0.2
+        }
+    }
+    var nextOpacity: Double {
+        if currentArray.count < 6 {
+            return 0.2
+        } else {
+            return 1
+        }
+    }
+    var rollOpacity: Double {
+        if canRoll() == true {
+            return 1
+        } else {
+            return 0.2
+        }
+    }
+    
+    
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -147,7 +212,7 @@ struct PlayerRollView: View {
                 VStack{
                     Image("diceeLogo")
                     Spacer()
-                    Text("Hello, player\(player)")
+                    Text("Hello, player \(player)")
                         .foregroundColor(.white)
                         .fontWeight(.heavy)
                         .font(.title)
@@ -168,6 +233,7 @@ struct PlayerRollView: View {
                                 PlayerCountDiceView(number: dice1)
                             }
                             .disabled(!canTapDice(diceTapped: diceOneTapped))
+                            .opacity(Double(diceOneOpacity))
                             Button {
                                 addDiceScoretoCorrectPlayer(player: player, diceScore: dice2)
                                 currentArray(player: player)
@@ -178,7 +244,9 @@ struct PlayerRollView: View {
                                 PlayerCountDiceView(number: dice2)
                             }
                             .disabled(!canTapDice(diceTapped: diceTwoTapped))
+                            .opacity(Double(diceTwoOpacity))
                         }
+                        
                         HStack {
                             Button {
                                 addDiceScoretoCorrectPlayer(player: player, diceScore: dice3)
@@ -190,6 +258,7 @@ struct PlayerRollView: View {
                                 PlayerCountDiceView(number: dice3)
                             }
                             .disabled(!canTapDice(diceTapped: diceThreeTapped))
+                            .opacity(Double(diceThreeOpacity))
                             Button {
                                 addDiceScoretoCorrectPlayer(player: player, diceScore: dice4)
                                 currentArray(player: player)
@@ -200,6 +269,7 @@ struct PlayerRollView: View {
                                 PlayerCountDiceView(number: dice4)
                             }
                             .disabled(!canTapDice(diceTapped: diceFourTapped))
+                            .opacity(Double(diceFourOpacity))
                         }
                         HStack {
                             Button {
@@ -212,6 +282,7 @@ struct PlayerRollView: View {
                                 PlayerCountDiceView(number: dice5)
                             }
                             .disabled(!canTapDice(diceTapped: diceFiveTapped))
+                            .opacity(Double(diceFiveOpacity))
                             Button {
                                 addDiceScoretoCorrectPlayer(player: player, diceScore: dice6)
                                 currentArray(player: player)
@@ -222,6 +293,7 @@ struct PlayerRollView: View {
                                 PlayerCountDiceView(number: dice6)
                             }
                             .disabled(!canTapDice(diceTapped: diceSixTapped))
+                            .opacity(Double(diceSixOpacity))
                         }
                         HStack {
                             Button(action: {
@@ -257,6 +329,7 @@ struct PlayerRollView: View {
                             }
                             .offset(x: -5)
                             .disabled(!canRoll())
+                            .opacity(rollOpacity)
                         
                             Button {
                                 if player < playerCount {
@@ -281,10 +354,11 @@ struct PlayerRollView: View {
                                     .padding(.all)
                             }
                             .sheet(isPresented: $showingSheet) {
-                                ScoreView(playerCount: self.$playerCount, maxScore: self.$maxScore, score1: self.$score1, score2: self.$score2, score3: self.$score3, score4: self.$score4, score5: self.$score5, score6: self.$score6)
+                                ScoreView(playerCount: self.$playerCount, maxScore: self.$maxScore, score1: self.$score1, score2: self.$score2, score3: self.$score3, score4: self.$score4, score5: self.$score5, score6: self.$score6, scoreDictionary: self.$scoreDictionary)
                             }
                             .offset(x: 28)
                             .disabled(currentArray.count < 6)
+                            .opacity(nextOpacity)
                         }
                     }
                 }
@@ -297,7 +371,7 @@ struct PlayerRollView: View {
                 showingSheet.toggle()
             }
             .sheet(isPresented: $showingSheet) {
-                ScoreView(playerCount: self.$playerCount, maxScore: self.$maxScore, score1: self.$score1, score2: self.$score2, score3: self.$score3, score4: self.$score4, score5: self.$score5, score6: self.$score6)
+                ScoreView(playerCount: self.$playerCount, maxScore: self.$maxScore, score1: self.$score1, score2: self.$score2, score3: self.$score3, score4: self.$score4, score5: self.$score5, score6: self.$score6, scoreDictionary: self.$scoreDictionary)
             }
         }
         .accentColor(.white)
@@ -317,39 +391,50 @@ struct ScoreView: View {
     @Binding var score5: String
     @Binding var score6: String
     
+    @Binding var scoreDictionary: [Int: [Int]]
+    
     var body: some View {
         VStack {
             HStack {
                 Text("Current Highest Dice Total: \(maxScore)")
                     .font(.title)
             }
+            
+//            for i in (1...playerCount) {
+//                HStack {
+//                    Text("Player \(player): ")
+//                        .fontWeight(.bold)
+//                    Text(scoreDictionary[i])
+//                }
+//            }
+            
             HStack {
-                Text("Player1: ")
+                Text("Player 1: ")
                     .fontWeight(.bold)
                 Text(score1)
             }
             HStack {
-                Text("Player2: ")
+                Text("Player 2: ")
                     .fontWeight(.bold)
                 Text(score2)
             }
             HStack {
-                Text("Player3: ")
+                Text("Player 3: ")
                     .fontWeight(.bold)
                 Text(score3)
             }
             HStack {
-                Text("Player4: ")
+                Text("Player 4: ")
                     .fontWeight(.bold)
                 Text(score4)
             }
             HStack {
-                Text("Player5: ")
+                Text("Player 5: ")
                     .fontWeight(.bold)
                 Text(score5)
             }
             HStack {
-                Text("Player6: ")
+                Text("Player 6: ")
                     .fontWeight(.bold)
                 Text(score6)
             }

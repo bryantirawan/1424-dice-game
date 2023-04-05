@@ -8,7 +8,7 @@
 import Foundation
 import AVFoundation
 
-var washPlayer: AVAudioPlayer!
+var washPlayer: AVAudioPlayer?
 
 func playSound() {
     let url = Bundle.main.url(forResource: "washhhh", withExtension: "mp3")

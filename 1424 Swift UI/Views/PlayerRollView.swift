@@ -20,13 +20,14 @@ struct PlayerRollView: View {
     @State var player: Int
     
     @State var firstRoll = true
+    @State var oneDiceHasBeenAdded = false
+    
     @State var diceOneTapped = false
     @State var diceTwoTapped = false
     @State var diceThreeTapped = false
     @State var diceFourTapped = false
     @State var diceFiveTapped = false
     @State var diceSixTapped = false
-    @State var oneDiceHasBeenAdded = false
     
     @State var dice1 = 1
     @State var dice2 = 2
@@ -44,6 +45,8 @@ struct PlayerRollView: View {
         6: []
     ]
     
+    
+    //score1 is different than scoreDictionary[1] because score1 is official score displayed in score modal view and takes into account if scoreDictionary[1] has 1, 4 per rules.
     @State var score1: String = ""
     @State var score2: String = ""
     @State var score3: String = ""
@@ -139,7 +142,7 @@ struct PlayerRollView: View {
     }
     
     var diceOneOpacity: Double {
-        if diceOneTapped == false {
+        if diceOneTapped == false && firstRoll == false {
             return 1
         }
         else {
@@ -147,7 +150,7 @@ struct PlayerRollView: View {
         }
     }
     var diceTwoOpacity: Double {
-        if diceTwoTapped == false {
+        if diceTwoTapped == false && firstRoll == false {
             return 1
         }
         else {
@@ -155,7 +158,7 @@ struct PlayerRollView: View {
         }
     }
     var diceThreeOpacity: Double {
-        if diceThreeTapped == false {
+        if diceThreeTapped == false && firstRoll == false {
             return 1
         }
         else {
@@ -163,7 +166,7 @@ struct PlayerRollView: View {
         }
     }
     var diceFourOpacity: Double {
-        if diceFourTapped == false {
+        if diceFourTapped == false && firstRoll == false {
             return 1
         }
         else {
@@ -171,7 +174,7 @@ struct PlayerRollView: View {
         }
     }
     var diceFiveOpacity: Double {
-        if diceFiveTapped == false {
+        if diceFiveTapped == false && firstRoll == false {
             return 1
         }
         else {
@@ -179,7 +182,7 @@ struct PlayerRollView: View {
         }
     }
     var diceSixOpacity: Double {
-        if diceSixTapped == false {
+        if diceSixTapped == false && firstRoll == false {
             return 1
         }
         else {
@@ -224,7 +227,7 @@ struct PlayerRollView: View {
                         }
                         HStack {
                             Button {
-                                print("player\(player) added dice: \(dice1) to current array: \(currentArray)")
+                                //print("player\(player) added dice: \(dice1) to current array: \(currentArray)")
                                 addDiceScoretoCorrectPlayer(player: player, diceScore: dice1)
                                 currentArray(player: player)
                                 calculateScore(player: player, scoreArray: scoreDictionary[player]!)
@@ -238,7 +241,7 @@ struct PlayerRollView: View {
                                 addDiceScoretoCorrectPlayer(player: player, diceScore: dice2)
                                 currentArray(player: player)
                                 calculateScore(player: player, scoreArray: scoreDictionary[player]!)
-                                print("player\(player) added dice: \(dice2) to current array: \(currentArray)")
+                                //print("player\(player) added dice: \(dice2) to current array: \(currentArray)")
                                 diceTwoTapped.toggle()
                             } label: {
                                 PlayerCountDiceView(number: dice2)
@@ -252,7 +255,7 @@ struct PlayerRollView: View {
                                 addDiceScoretoCorrectPlayer(player: player, diceScore: dice3)
                                 currentArray(player: player)
                                 calculateScore(player: player, scoreArray: scoreDictionary[player]!)
-                                print("player\(player) added dice: \(dice3) to current array: \(currentArray)")
+                                //print("player\(player) added dice: \(dice3) to current array: \(currentArray)")
                                 diceThreeTapped.toggle()
                             } label: {
                                 PlayerCountDiceView(number: dice3)
@@ -263,7 +266,7 @@ struct PlayerRollView: View {
                                 addDiceScoretoCorrectPlayer(player: player, diceScore: dice4)
                                 currentArray(player: player)
                                 calculateScore(player: player, scoreArray: scoreDictionary[player]!)
-                                print("player\(player) added dice: \(dice4) to current array: \(currentArray)")
+                                //print("player\(player) added dice: \(dice4) to current array: \(currentArray)")
                                 diceFourTapped.toggle()
                             } label: {
                                 PlayerCountDiceView(number: dice4)
@@ -276,7 +279,7 @@ struct PlayerRollView: View {
                                 addDiceScoretoCorrectPlayer(player: player, diceScore: dice5)
                                 currentArray(player: player)
                                 calculateScore(player: player, scoreArray: scoreDictionary[player]!)
-                                print("player\(player) added dice: \(dice5) to current array: \(currentArray)")
+                                //print("player\(player) added dice: \(dice5) to current array: \(currentArray)")
                                 diceFiveTapped.toggle()
                             } label: {
                                 PlayerCountDiceView(number: dice5)
@@ -287,7 +290,7 @@ struct PlayerRollView: View {
                                 addDiceScoretoCorrectPlayer(player: player, diceScore: dice6)
                                 currentArray(player: player)
                                 calculateScore(player: player, scoreArray: scoreDictionary[player]!)
-                                print("player\(player) added dice: \(dice6) to current array: \(currentArray)")
+                                //print("player\(player) added dice: \(dice6) to current array: \(currentArray)")
                                 diceSixTapped.toggle()
                             } label: {
                                 PlayerCountDiceView(number: dice6)
@@ -366,7 +369,7 @@ struct PlayerRollView: View {
             }
         }
         .toolbar {
-            Button("Scores") {
+            Button("Scores and Rules") {
                 calculateWinnerAndUpdateScores(playerCount: playerCount, scoreDictionary: scoreDictionary)
                 showingSheet.toggle()
             }
@@ -406,37 +409,34 @@ struct ScoreView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("Current Highest Dice Total: \(maxScore)")
-                    .font(.title)
-            }
-            
-//            for i in (1...playerCount) {
-//                HStack {
-//                    Text("Player \(player): ")
-//                        .fontWeight(.bold)
-//                    Text(scoreDictionary[i])
-//                }
-//            }
-            
-            ForEach((1...playerCount), id: \.self) {player in
+            VStack {
                 HStack {
-                    Text("Player \(player): ")
-                        .fontWeight(.bold)
-                    //Text(scoreDictionary[player].map(String.init) ?? "")
-                    Text(calculateScore(player: player, scoreArray: scoreDictionary[player]!) ?? "")
+                    Text("Current Highest Dice Total: \(maxScore)")
+                        .font(.title)
                 }
+                
+                ForEach((1...playerCount), id: \.self) {player in
+                    HStack {
+                        Text("Player \(player): ")
+                            .fontWeight(.bold)
+                        Text(calculateScore(player: player, scoreArray: scoreDictionary[player]!) ?? "")
+                    }
                 }
-            
-            Button("Press to dismiss") {
-                dismiss()
+                    Text("Rules: After each roll the player is required to keep at least one die and re-roll the remaining. A player's turn ends when all dice have been held. A 1 and 4 dice are required. The rest are totaled and winner is highest score (24 is the max). ")
+                    .padding(.all)
+                
+                
+                
+                Button("Press to dismiss") {
+                    dismiss()
+                }
+                .font(.title)
+                .padding()
+                .foregroundColor(.white)
+                .background(Color(red: 94/255, green: 103/255, blue: 38/255))
             }
-            .font(.title)
-            .padding()
-            .foregroundColor(.white)
-            .background(Color(red: 94/255, green: 103/255, blue: 38/255))
-        }
+
+        
         
 
     }
@@ -446,6 +446,9 @@ struct ScoreView: View {
 
 struct PlayerRollView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerRollView(playerCount: 1, player: 1)
+        Group {
+            PlayerRollView(playerCount: 1, player: 1)
+            PlayerRollView(playerCount: 1, player: 1)
+        }
     }
 }

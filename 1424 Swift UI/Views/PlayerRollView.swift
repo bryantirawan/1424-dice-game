@@ -393,6 +393,18 @@ struct ScoreView: View {
     
     @Binding var scoreDictionary: [Int: [Int]]
     
+    func calculateScore(player: Int, scoreArray: Array<Any>) -> String {
+        if scoreDictionary[player]!.count == 0 {
+            return ""
+        }
+        if scoreDictionary[player]!.contains(1) && scoreDictionary[player]!.contains(4) {
+            let score = scoreDictionary[player]!.reduce(0, +) - 5
+            return String(score)
+        } else {
+            return "it's a washhhhh"
+        }
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -408,36 +420,15 @@ struct ScoreView: View {
 //                }
 //            }
             
-            HStack {
-                Text("Player 1: ")
-                    .fontWeight(.bold)
-                Text(score1)
-            }
-            HStack {
-                Text("Player 2: ")
-                    .fontWeight(.bold)
-                Text(score2)
-            }
-            HStack {
-                Text("Player 3: ")
-                    .fontWeight(.bold)
-                Text(score3)
-            }
-            HStack {
-                Text("Player 4: ")
-                    .fontWeight(.bold)
-                Text(score4)
-            }
-            HStack {
-                Text("Player 5: ")
-                    .fontWeight(.bold)
-                Text(score5)
-            }
-            HStack {
-                Text("Player 6: ")
-                    .fontWeight(.bold)
-                Text(score6)
-            }
+            ForEach((1...playerCount), id: \.self) {player in
+                HStack {
+                    Text("Player \(player): ")
+                        .fontWeight(.bold)
+                    //Text(scoreDictionary[player].map(String.init) ?? "")
+                    Text(calculateScore(player: player, scoreArray: scoreDictionary[player]!) ?? "")
+                }
+                }
+            
             Button("Press to dismiss") {
                 dismiss()
             }
